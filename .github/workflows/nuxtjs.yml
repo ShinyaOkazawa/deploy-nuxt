@@ -70,9 +70,9 @@ jobs:
       - name: Install dependencies
         run: yarn
       - name: Static HTML export with Nuxt
+        run: yarn generate
         env:
           APP_ENV: production
-        run: yarn generate
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
