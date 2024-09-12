@@ -37,7 +37,7 @@ jobs:
             echo "ENVIRONMENT=Staging" >> $GITHUB_OUTPUT
           elif [ ${{ github.ref == 'refs/heads/main' }} = true ]: then
             echo "ENVIRONMENT=Production" >> $GITHUB_OUTPUT
-
+          fi
       - name: Checkout code
         uses: actions/checkout@v4
 
