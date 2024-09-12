@@ -33,19 +33,19 @@ jobs:
         id: set-env
         run: |
           if [ ${{ github.ref == 'refs/heads/staging' }} = true ]; then
-            echo "ENVIRONMENT=Staging" >> $GITHUB_OUTPUT
+            echo "staging"
           elif [ ${{ github.ref == 'refs/heads/main' }} = true ]; then
-            echo "ENVIRONMENT=Production" >> $GITHUB_OUTPUT
+            echo "main"
           fi
       - name: Checkout code
         uses: actions/checkout@v4
 
-  show-env:
-    needs: setup
-    runs-on: ubuntu-latest
-    steps:
-      - name: Show env
-        run: echo ${{ needs.setup.outputs.ENVIRONMENT }}
+  # show-env:
+  #   needs: setup
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Show env
+  #       run: echo ${{ needs.setup.outputs.ENVIRONMENT }}
 
   # Build job
   build:
