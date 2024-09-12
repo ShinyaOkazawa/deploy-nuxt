@@ -46,11 +46,11 @@ jobs:
   build:
     needs: setup
     runs-on: ubuntu-latest
+    env:
+      APP_ENV: ${{ needs.setup.outputs.APP_ENV }}
     steps:
       - name: Show env
         run: echo $APP_ENV
-      - name: Set env
-        run: echo $APP_ENV >> APP_ENV
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup Node
