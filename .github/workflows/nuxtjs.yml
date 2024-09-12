@@ -49,11 +49,13 @@ jobs:
       APP_ENV: ${{ needs.setup.outputs.APP_ENV }}
     steps:
       - name: Show env
-        run: echo $ENVIRONMENT
+        run: echo $APP_ENV
 
   # Build job
   build:
     needs: setup
+    env:
+      APP_ENV: ${{ needs.setup.outputs.APP_ENV }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
