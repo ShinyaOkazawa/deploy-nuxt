@@ -49,8 +49,9 @@ jobs:
     env:
       APP_ENV: ${{ needs.setup.outputs.APP_ENV }}
     steps:
-      - name: Show env
-        run: echo $APP_ENV
+      - name: Show variables
+        run: |
+          echo ${{ env.APP_ENV }}
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup Node
