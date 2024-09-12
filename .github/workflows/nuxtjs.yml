@@ -28,24 +28,28 @@ concurrency:
 jobs:
   setup:
     runs-on: ubuntu-latest
+    outputs:
+      ENVIRONMENT: ${{ steps.set-env.outputs.ENVIRONMENT }}
     steps:
       - name: Set env
         id: set-env
         run: |
           if [ ${{ github.ref == 'refs/heads/staging' }} = true ]; then
-            echo "staging"
+            echo "ENVIRONMENT=Staging" >> $GITHUB_OUTPUT
           elif [ ${{ github.ref == 'refs/heads/main' }} = true ]; then
-            echo "main"
+            echo "ENVIRONMENT=Production" >> $GITHUB_OUTPUT
           fi
       - name: Checkout code
         uses: actions/checkout@v4
 
-  # show-env:
-  #   needs: setup
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Show env
-  #       run: echo ${{ needs.setup.outputs.ENVIRONMENT }}
+  show-env:
+    needs: setup
+    runs-on: ubuntu-latest
+    env:
+      ENVIRONMENT: ${{ needs.setup.outputs.ENVIRONMENT }}
+    steps:
+      - name: Show env
+        run: echo $ENVIRONMENT
 
   # Build job
   build:
