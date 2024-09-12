@@ -60,12 +60,8 @@ jobs:
           node-version: "20"
       - name: Setup Pages
         uses: actions/configure-pages@v5
-        with:
-          # Automatically inject router.base in your Nuxt configuration file and set
-          # target to static (https://nuxtjs.org/docs/configuration-glossary/configuration-target/).
-          #
-          # You may remove this line if you want to manage the configuration yourself.
-          static_site_generator: nuxt
+      # - name: Clear yarn cache
+      #   run: yarn cache clean
       - name: Install dependencies
         run: yarn
       - name: Static HTML export with Nuxt
