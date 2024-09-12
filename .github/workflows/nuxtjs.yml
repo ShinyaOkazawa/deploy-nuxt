@@ -29,15 +29,15 @@ jobs:
   setup:
     runs-on: ubuntu-latest
     outputs:
-      ENVIRONMENT: ${{ steps.set-env.outputs.ENVIRONMENT }}
+      APP_ENV: ${{ steps.set-env.outputs.APP_ENV }}
     steps:
       - name: Set env
         id: set-env
         run: |
           if [ ${{ github.ref == 'refs/heads/staging' }} = true ]; then
-            echo "ENVIRONMENT=Staging" >> $GITHUB_OUTPUT
+            echo "APP_ENV=staging" >> $GITHUB_OUTPUT
           elif [ ${{ github.ref == 'refs/heads/main' }} = true ]; then
-            echo "ENVIRONMENT=Production" >> $GITHUB_OUTPUT
+            echo "APP_ENV=production" >> $GITHUB_OUTPUT
           fi
       - name: Checkout code
         uses: actions/checkout@v4
@@ -46,7 +46,7 @@ jobs:
     needs: setup
     runs-on: ubuntu-latest
     env:
-      ENVIRONMENT: ${{ needs.setup.outputs.ENVIRONMENT }}
+      APP_ENV: ${{ needs.setup.outputs.APP_ENV }}
     steps:
       - name: Show env
         run: echo $ENVIRONMENT
