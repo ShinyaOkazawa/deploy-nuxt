@@ -6,6 +6,7 @@ console.log(config);
 
 <template>
   <div>
+    <p>hoge</p>
     <p>{{ `APP_ENV: ${$config.public.APP_ENV}` }}</p>
     <NuxtRouteAnnouncer />
     <NuxtWelcome />
