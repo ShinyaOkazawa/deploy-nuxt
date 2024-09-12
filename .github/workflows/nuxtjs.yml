@@ -105,6 +105,8 @@ jobs:
       - setup
       - build
     if: github.ref_name == 'staging' || github.ref_name == 'main'
+    env:
+      APP_ENV: ${{ needs.setup.outputs.APP_ENV }}
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
