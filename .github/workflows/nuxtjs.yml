@@ -69,7 +69,7 @@ jobs:
       - name: Install dependencies
         run: yarn
       - name: Static HTML export with Nuxt
-        run: AP_ENV=production yarn generate
+        run: APP_ENV=production yarn generate
         env:
           APP_ENV: production
       - name: Upload artifact
