@@ -60,12 +60,10 @@ jobs:
           node-version: "20"
       - name: Setup Pages
         uses: actions/configure-pages@v5
-      # - name: Clear yarn cache
-      #   run: yarn cache clean
       - name: Install dependencies
         run: yarn
       - name: Static HTML export with Nuxt
-        run: APP_ENV=production yarn generate
+        run: yarn generate
         env:
           APP_ENV: production
       - name: Upload artifact

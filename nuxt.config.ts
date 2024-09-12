@@ -5,7 +5,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   runtimeConfig: {
     public: {
-      APP_ENV: 'development'
+      APP_ENV: process.env.APP_ENV ?? 'development'
     }
   }
 })
