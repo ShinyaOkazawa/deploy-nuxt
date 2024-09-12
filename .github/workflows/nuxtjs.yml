@@ -42,15 +42,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-  show-env:
-    needs: setup
-    runs-on: ubuntu-latest
-    env:
-      APP_ENV: ${{ needs.setup.outputs.APP_ENV }}
-    steps:
-      - name: Show env
-        run: echo $APP_ENV
-
   # Build job
   build:
     needs: setup
@@ -58,6 +49,8 @@ jobs:
       APP_ENV: ${{ needs.setup.outputs.APP_ENV }}
     runs-on: ubuntu-latest
     steps:
+      - name: Show env
+        run: echo $APP_ENV
       - name: Checkout
         uses: actions/checkout@v4
       - name: Detect package manager
